@@ -1,0 +1,52 @@
+//Median of two arrays
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+int *a,*b,*sortarr;
+int m,n,i,j=0,k=0;
+clrscr();
+printf("enter size of arrays\n");
+scanf("%d %d",&m,&n);
+a=(int*)malloc(m*sizeof(int));
+b=(int*)malloc(n*sizeof(int));
+for(i=0;i<m;i++)
+scanf("%d",&a[i]);
+for(i=0;i<n;i++)
+scanf("%d",&b[i]);
+sortarr=(int*)malloc((m+n)*sizeof(int));
+for(i=0;i<(m+n);i++)
+{
+if(j<m && k<n)
+{
+if(a[j]<b[k])
+{
+sortarr[i]=a[j];
+j++;
+}
+else
+{
+sortarr[i]=b[k];
+k++;
+}
+}
+else if(j<m)
+{
+sortarr[i]=a[j];
+j++;
+}
+else if(k<n)
+{
+sortarr[i]=b[k];
+k++;
+}
+}
+for(i=0;i<m+n;i++)
+printf("%d",sortarr[i]);
+if(i%2!=0)
+printf("the median is %d",sortarr[(m+n)/2]);
+else
+printf("the median is %f",(float)(sortarr[(m+n-1)/2]+sortarr[(m+n+1)/2])/2);
+getch();
+} 

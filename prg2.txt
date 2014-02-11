@@ -1,0 +1,35 @@
+//triangle verification
+
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+int i,r,n,x[3],y[3],n1,n2,n3;
+clrscr();
+printf("enter 3 x-coordinates");
+for(i=0;i<3;i++)
+scanf("%d",&x[i]);
+printf("enter 3 y-coordinates");
+for(i=0;i<3;i++)
+scanf("%d",&y[i]);
+n1=sqrt((x[1]-x[0])*(x[1]-x[0])+(y[1]-y[0])*(y[1]-y[0]));
+n2=sqrt((x[2]-x[1])*(x[2]-x[1])+(y[2]-y[1])*(y[2]-y[1]));
+n3=sqrt((x[0]-x[2])*(x[0]-x[2])+(y[0]-y[2])*(y[0]-y[2]));
+if((n1+n2>n3) && (n2+n3>n1) && (n1+n3>n2))
+{
+printf("triangle can be formed");
+if(n1==n2 && n2==n3 && n3==n1)
+printf("\n equilateral triangle");
+else if((n1==n2)||(n2==n3) || (n3==n1))
+printf("\n isosceles triangle");
+else if((n1*n1)==((n2*n2)+(n3*n3))|| (n2*n2)==((n1*n1)+(n3*n3))|| (n3*n3)==((n2*n2)+(n1*n1)))
+printf("Right angled triangle");
+else
+printf("\n scalene triangle");
+}
+else
+printf("triangle cannot be formed");
+ 
+getch();
+}

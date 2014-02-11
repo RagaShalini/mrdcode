@@ -1,0 +1,36 @@
+//to find the maximum occured number
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+int *input,a[100],n,i,value,max=0,maxvalue=0;
+clrscr();
+for(i=0;i<100;i++)
+a[i]=0;
+printf("enter the value of array\n");
+scanf("%d",&n);
+input=(int*)malloc(n*sizeof(int));
+printf("enter the elements\n");
+for(i=0;i<n;i++)
+{
+scanf("%d",&input[i]);
+a[input[i]]++;
+}
+for(i=0;i<100;i++)
+ {
+if(max<a[i])
+{
+max=a[i];
+ }
+ }
+ for(i=0;i<100;i++)
+ {
+ if(max==a[i])
+ {
+ maxvalue=i;
+ printf("\nthe value occured many times is %d",maxvalue);
+ }
+ }
+ getch();
+ }

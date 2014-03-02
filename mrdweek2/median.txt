@@ -1,0 +1,79 @@
+//median in the linked list
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+int count=0;
+struct node
+{
+float data;
+struct node  *link ;
+}*first=NULL;
+void add(float num)
+{
+struct node *temp,*r;
+temp=(struct node *)malloc(sizeof(struct node));
+temp->data=num;
+temp->link=NULL;
+count++;
+if(first==NULL)
+{
+
+ first=temp;
+}
+else
+{
+r=first;
+while(r->link)
+r=r->link;
+r->link=temp;
+}
+}
+
+void display()
+{
+struct node *r=first;
+if(r==NULL)
+printf("empty\n");
+else
+while(r)
+{
+printf("%f\t",r->data);
+r=r->link;
+}
+}
+void median()
+{
+int m=-1,n=-1,j;
+float ans;
+struct node *r=first;
+if(count%2!= 0 )
+n=ceil(count/2);
+else
+{
+m=count/2;
+
+}
+if(m==-1)
+{
+for(j=0;j<n;j++,r=r->link);
+printf("\nmedian=");
+printf("%f",r->data);
+}
+else
+{
+for(j=0;j<m-1;j++,r=r->link);
+printf("\nmedian=");
+ans=(r->data+r->link->data)/2;
+printf("%f",ans);
+}
+}
+
+void main()
+{
+clrscr();
+add(1);add(2);add(13);add(22);
+printf("linked list\n");
+display();
+median();
+getch();
+}

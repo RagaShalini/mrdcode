@@ -1,0 +1,126 @@
+//merging two linked lists
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+int data;
+struct node  *link ;
+};
+
+void display(struct node **head)
+{
+struct node *r=*head;
+if(*head==NULL)
+printf("empty\n");
+else
+while(r)
+{
+printf("%d\t",r->data);
+r=r->link;
+}
+}
+void insert(struct node **head,int value)
+{
+struct node *temp=(struct node *)malloc(sizeof(struct node *));
+struct node *r=*head;
+temp->data=value;
+if(*head==NULL)
+{
+  temp->link=NULL;
+  *head=temp;
+}
+else
+{
+while(r->link)
+r=r->link;
+r->link=temp;
+temp->link=NULL;
+}
+}
+void merge(struct node **f,struct node **s,struct node **t)
+{
+struct node *ref=*t, *r=*f,*q=*s,*temp=(struct node *)malloc(sizeof(struct node*));
+if(*f==NULL && *s==NULL)
+return;
+while(r && q)
+{
+ref=*t;
+if(r->data > q->data)
+{
+
+temp->data=q->data;
+q=q->link;
+if(*t==NULL)
+{
+*t=temp;
+temp->link=NULL;
+}
+else
+{
+while(ref->link)
+ref=ref->link;
+ref->link=temp;
+}
+}
+if(q->data >= r->data)
+{
+temp->data=q->data;
+q=q->link;
+if(*t==NULL)
+{
+*t=temp;
+temp->link=NULL;
+}
+else
+{
+while(ref->link)
+ref=ref->link;
+ref->link=temp;
+}
+}
+
+}
+ref=*t;
+while(ref->link)
+ref=ref->link;
+
+if(r->link)
+{
+while(r->link)
+{
+ref->link=r;
+r=r->link;
+ref=ref->link;
+}
+}
+if(q->link)
+{
+while(q->link)
+{
+ref->link=q;
+q=q->link;
+ref=ref->link;
+}
+}
+
+}
+void main()
+{
+struct node *first=NULL,*second=NULL,*res;
+clrscr();
+insert(&first,2);
+insert(&first,12);
+insert(&first,30);
+printf("\n first linked list\n");
+display(&first);
+insert(&second,10);
+insert(&second,15);
+insert(&second,35);
+printf("\nsecond linked list\n");
+display(&second);
+merge(&first,&second,&res);
+printf("\n after merging\n");
+display(&res);
+getch();
+}
+

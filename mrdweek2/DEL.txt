@@ -1,0 +1,85 @@
+//delete an element from single linked list
+#include<stdio.h>
+#include<conio.h>
+int count=0;
+struct node
+{
+int data;
+struct node  *link ;
+}*first=NULL;
+void add(int num)
+{
+struct node *temp,*r;
+temp=(struct node *)malloc(sizeof(struct node));
+temp->data=num;
+temp->link=NULL;
+count++;
+if(first==NULL)
+{
+
+ first=temp;
+}
+else
+{
+r=first;
+while(r->link)
+r=r->link;
+r->link=temp;
+}
+}
+void display()
+{
+struct node *r=first;
+if(r==NULL)
+printf("empty\n");
+else
+while(r)
+{
+printf("%d\t",r->data);
+r=r->link;
+}
+}
+int del(int i)
+{
+int k=0;
+struct node *temp,*r=first,*q=NULL;
+if(i==first->data)
+{
+first=first->link;
+return 0;
+}
+else
+{
+while(r->link && k<count)
+{
+k++;
+if(r->data==i)
+{
+q->link=r->link ;
+free(r);
+return 0;
+}
+ q=r;
+ r=r->link;
+}
+if(k==count)
+printf("\nnot found\n");
+}
+}
+void main()
+{
+int i,n;
+clrscr();
+add(1);add(2);add(3);
+printf("before reversing\n");
+display();
+printf("\nenter the element to be deleted");
+scanf("%d",&i);
+n=del(i);
+if(n!=0)
+printf("\nelement is not found\n");
+else
+printf("\n element found and deleted\n");
+display();
+getch();
+}

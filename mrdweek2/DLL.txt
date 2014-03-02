@@ -1,0 +1,55 @@
+//dll middle element
+#include<stdio.h>
+#include<conio.h>
+int count=0;
+struct node
+{
+int data;
+struct node *llink,*rlink;
+}*first=NULL;
+void insert(int num)
+{
+struct node *temp,*y=first;
+temp=(struct node *)malloc(sizeof(struct node *));
+temp->data=num;
+count++;
+if(first==NULL)
+{
+temp->llink=NULL;
+temp->rlink=NULL;
+first=temp;
+first->llink=NULL;
+first->rlink=NULL;
+}
+else
+{
+while(y->rlink!=NULL)
+y=y->rlink;
+y->rlink=temp;
+temp->llink=y;
+temp->rlink=NULL;
+}
+}
+void display()
+{
+struct node *r=first;
+if(first==NULL)
+printf("\n no elements\n");
+else
+{
+while(r)
+{
+printf("%d\t",r->data) ;
+r=r->rlink;
+}
+}
+}
+void main()
+{
+clrscr();
+insert(10);
+insert(20);
+//insert(30);
+display();
+getch();
+}

@@ -1,0 +1,82 @@
+//printing nth element from the end
+#include<stdio.h>
+#include<conio.h>
+int count=0;
+struct node
+{
+int data;
+struct node  *link ;
+}*first=NULL;
+void add(int num)
+{
+struct node *temp,*r;
+temp=(struct node *)malloc(sizeof(struct node));
+temp->data=num;
+temp->link=NULL;
+count++;
+if(first==NULL)
+{
+
+ first=temp;
+}
+else
+{
+r=first;
+while(r->link)
+r=r->link;
+r->link=temp;
+}
+}
+void reverse()
+{
+struct node *q,*r,*s;
+q=first;
+r=NULL;
+while(q)
+{
+s=r;
+r=q;
+q=q->link;
+r->link=s;
+}
+first=r;
+}
+void display()
+{
+struct node *r=first;
+if(r==NULL)
+printf("empty\n");
+else
+while(r)
+{
+printf("%d\t",r->data);
+r=r->link;
+}
+}
+void ele(int i)
+{
+int k=1;
+struct node *r=first;
+if(i>count)
+{
+printf("\n not possible\n");
+getch();
+exit(1);
+}
+
+for(;k<i;k++,r=r->link);
+printf("\n%d\n",r->data);
+}
+void main()
+{
+int i;
+clrscr();
+add(1);add(2);add(3);add(20);add(25);add(6);add(43);
+printf("linked list\n");
+display();
+reverse();
+printf("\nenter the position of element to be deleted from the ending\n");
+scanf("%d",&i);
+ele(i);
+getch();
+}

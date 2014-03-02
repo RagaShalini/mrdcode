@@ -1,0 +1,64 @@
+//reverse of linked list using iteration
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+int data;
+struct node  *link ;
+}*first=NULL;
+void add(int num)
+{
+struct node *temp,*r;
+temp=(struct node *)malloc(sizeof(struct node));
+temp->data=num;
+temp->link=NULL;
+if(first==NULL)
+{
+
+ first=temp;
+}
+else
+{
+r=first;
+while(r->link)
+r=r->link;
+r->link=temp;
+}
+}
+void reverse()
+{
+struct node *q,*r,*s;
+q=first;
+r=NULL;
+while(q)
+{
+s=r;
+r=q;
+q=q->link;
+r->link=s;
+}
+first=r;
+}
+void display()
+{
+struct node *r=first;
+if(r==NULL)
+printf("empty\n");
+else
+while(r)
+{
+printf("%d\t",r->data);
+r=r->link;
+}
+}
+void main()
+{
+clrscr();
+add(1);add(2);add(3);
+printf("before reversing\n");
+display();
+printf("\nafter reversing\n");
+reverse();
+display();
+getch();
+}

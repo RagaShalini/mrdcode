@@ -1,0 +1,97 @@
+//adding element into circular list and sorting
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+int data;
+struct node *link;
+}*first=NULL;
+void create(int num)
+{
+struct node *temp,*r=first;
+temp=(struct node *)malloc(sizeof(struct node *));
+temp->data=num;
+
+if(first==NULL)
+{
+ first=temp;
+ temp->link=first;
+ }
+ else
+ {
+   while(r->link!=first)
+   r=r->link;
+   temp->link=r->link;
+   r->link=temp;
+ }
+}
+void display()
+{
+struct node *temp=first;
+printf("\n%d\t",temp->data);
+temp=temp->link;
+while(temp!=first)
+{
+printf("%d\t",temp->data);
+temp=temp->link;
+}
+}
+void add(int num)
+{
+int i=0;
+struct node *temp,*r=first,*q=NULL;
+temp=(struct node *)malloc(sizeof(struct node *));
+temp->data=num;
+
+if(first==NULL)
+{
+first=temp;
+temp->link=first;
+
+}
+else
+{  //if the element added is going to be the first element
+if(first->data>temp->data )
+{
+i++;
+while(r->link!=first)
+r=r->link;
+r->link=temp;
+temp->link=first;
+first=temp;
+
+}
+else
+{
+while(r->data < temp->data)
+{           //inserting inbetween
+if(r->link==first)
+goto one;
+q=r;
+r=r->link;
+
+}
+i++;
+temp->link=r;
+q->link=temp;
+one:        //when it the last node
+if(i==0)
+{
+temp->link=r->link;
+r->link=temp;
+}
+}
+}
+}
+void main()
+{
+
+clrscr();
+create(1);
+create(2);
+create(4);
+display();
+add(3);
+display();
+getch();
+}
